@@ -1,14 +1,22 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const dotenv = require('dotenv');
 dotenv.config();
 
 app.set('view engine', 'ejs');
+app.use(express.static('public'))
+
 
 app.get('/', (req, res)=>{
     res.statusCode = 200;
     res.render('index')
+})
+
+app.use((req, res)=>{
+    res.statusCode = 404;
+    res.send('404 not found');
 })
 
 

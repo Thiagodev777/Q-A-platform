@@ -1,33 +1,24 @@
-<%- include('partials/header.ejs') %> 
+<%- include('partials/header.ejs') %>
 <body>
-    <%- include('partials/navbar.ejs') %> 
-    
-    <div class="container">
-        
-        <h1>Perguntas</h1>
-        <hr>
-        <a class="btn btn-success" href="/perguntar">Perguntar</a>
+  <%- include('partials/navbar.ejs') %>
 
+  <div class="container">
+    <h1>Perguntas</h1>
+    <hr />
+    <a class="btn btn-success" href="/perguntar">Perguntar</a>
 
-        <% if(perguntas.length === 0) { %>
-            <h2 class="my-5 no-data">Não a Perguntas Cadastradas. Adicione uma...</h2>
-        <% } else { %>
-
-            <% perguntas.forEach(({id, titulo, descricao}) => { %>
-                <div class="card my-5 shadow">
-                    <div class="card-header">
-                        <h3> <%= titulo %> </h3>
-                    </div>
-                    <div class="card-footer">
-                        <a href="responder/<%= id %>" class="btn btn-success">Responder</a>
-                    </div>
-                </div>
-            <% }) %> 
-
-        <% } %>
-
+    <% if(perguntas.length === 0) { %>
+    <h2 class="my-5 no-data">Não a Perguntas Cadastradas. Adicione uma...</h2>
+    <% } else { %> <% perguntas.forEach(({id, titulo, descricao}) => { %>
+    <div class="card my-5 shadow">
+      <div class="card-header">
+        <h3><%= titulo %></h3>
+      </div>
+      <div class="card-footer">
+        <a href="responder/<%= id %>" class="btn btn-success">Responder</a>
+      </div>
     </div>
-
-
+    <% }) %> <% } %>
+  </div>
 </body>
-<%- include('partials/footer.ejs') %> 
+<%- include('partials/footer.ejs') %>

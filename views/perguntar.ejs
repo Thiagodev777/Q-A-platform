@@ -1,25 +1,36 @@
 <%- include('partials/header.ejs') %>
 <body>
-    <%- include('partials/navbar.ejs') %>
-    <div class="container">
-        <div class="card shadow border rounded">
-            <div class="card-header">
-                <h2>Realizar Pergunta</h2>
-            </div>
-            <div class="card-body">
-                <form action="/salvarpergunta" method="POST">
-                    <div class="mb-4">
-                        <label for="">Titulo:</label>
-                        <input type="text" name="titulo" placeholder="Titulo.." class="form-control" required>
-                    </div>
-                    <div class="my-4">
-                        <label for="">Descrição:</label>
-                        <textarea name="descricao" class="form-control" placeholder="Descreva sua perguta aqui.." required></textarea>
-                    </div>
-                    <button class="btn btn-success">Perguntar</button>
-                </form>
-            </div>
-        </div>
+  <%- include('partials/navbar.ejs') %>
+  <div class="container">
+    <div class="card shadow border rounded">
+      <div class="card-header">
+        <h2>Realizar Pergunta</h2>
+      </div>
+      <div class="card-body">
+        <form action="/salvarpergunta" method="POST">
+          <div class="mb-4">
+            <label for="">Titulo:</label>
+            <input
+              type="text"
+              name="titulo"
+              placeholder="Titulo.."
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="my-4">
+            <label for="">Descrição:</label>
+            <textarea
+              name="descricao"
+              class="form-control"
+              placeholder="Descreva sua perguta aqui.."
+              required
+            ></textarea>
+          </div>
+          <button class="btn btn-success">Perguntar</button>
+        </form>
+      </div>
     </div>
+  </div>
 </body>
-<%- include('partials/footer.ejs') %> 
+<%- include('partials/footer.ejs') %>

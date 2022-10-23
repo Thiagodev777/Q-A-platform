@@ -1,36 +1,37 @@
 <%- include('partials/header.ejs') %>
 <body>
-    <%- include('partials/navbar.ejs') %> 
-
-    <div class="container">
-
-        <div class="card shadow border rounded">
-            <div class="card-header">
-                <h1> <%= pergunta.titulo %> </h1> 
-            </div>
-            <div class="card-footer">
-                <form action="/responder" method="POST">
-                    <textarea name="corpo" placeholder="Digite aqui sua resposta..." class="form-control mb-4"></textarea>
-                    <input type="hidden" name="respostaId" value="<%= pergunta.id %>">
-                    <button type="submit" class="btn btn-success">Responder</button>
-                </form>
-            </div>
-        </div>
-        <hr>
-        <h3>Respostas</h3>
-        <hr>
-        <% if(respostas.length === 0) { %>
-            <h4 class="no-data">Esta pergunta ainda não possui respostas...</h4>
-        <% } else { %>
-            <% respostas.forEach(({respostaId, corpo})=>{ %>
-                <div class="card shadow my-4 border rounded">
-                    <div class="card-body">
-                        <p> <%= corpo %> </p>
-                    </div>
-                </div>
-            <% }) %> 
-        <% } %> 
+  <%- include('partials/navbar.ejs') %>
+  <div class="container">
+    <div class="card shadow border rounded">
+      <div class="card-header">
+        <h1><%= pergunta.titulo %></h1>
+        <h4 class="my-3"> <%= pergunta.descricao %> </h4>
+      </div>
+      <div class="card-footer">
+        <form action="/responder" method="POST">
+          <textarea
+            name="corpo"
+            placeholder="Digite aqui sua resposta..."
+            class="form-control mb-4"
+            required
+          ></textarea>
+          <input type="hidden" name="respostaId" value="<%= pergunta.id %>" />
+          <button type="submit" class="btn btn-success">Responder</button>
+        </form>
+      </div>
     </div>
-
+    <hr />
+    <h3>Respostas</h3>
+    <hr />
+    <% if(respostas.length === 0) { %>
+    <h4 class="no-data">Esta pergunta ainda não possui respostas...</h4>
+    <% } else { %> <% respostas.forEach(({respostaId, corpo})=>{ %>
+    <div class="card shadow my-4 border rounded">
+      <div class="card-body">
+        <p><%= corpo %></p>
+      </div>
+    </div>
+    <% }) %> <% } %>
+  </div>
 </body>
-<%- include('partials/footer.ejs') %>  
+<%- include('partials/footer.ejs') %>

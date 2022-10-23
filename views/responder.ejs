@@ -3,11 +3,14 @@
     <%- include('partials/navbar.ejs') %> 
 
     <div class="container">
-
-        <h1>Pagina para responder</h1>
-
         <h1> <%= pergunta.titulo %> </h1> 
-
+        <form action="" method="POST">
+            <h3 class="mt-5">Responda</h3>
+            <label for="">Resposta:</label>
+            <textarea name="corpo" placeholder="Digite aqui sua resposta..." class="form-control mb-4"></textarea>
+            <input type="hidden" name="" value="<%= pergunta.id %>">
+            <button type="submit" class="btn btn-success">Responder</button>
+        </form>
     </div>
 
 </body>

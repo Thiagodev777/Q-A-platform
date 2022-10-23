@@ -6,7 +6,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app.set('view engine', 'ejs');
-app.use(express.static( path.join(__dirname, 'public') ))
+app.use(express.static( path.join(__dirname, 'public') ));
+
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 
 app.get('/', (req, res)=>{
@@ -17,6 +20,13 @@ app.get('/perguntar', (req, res)=>{
     res.statusCode = 200;
     res.render('perguntar')
 })
+
+
+app.post('/salvarpergunta', (req, res)=>{
+    let { titulo, descricao } = req.body;
+    res.send(titulo)
+})
+
 
 
 

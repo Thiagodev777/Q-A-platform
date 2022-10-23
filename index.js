@@ -15,6 +15,7 @@ connection.authenticate().then(()=>{
 
 // Models
 const Pergunta = require('./model/Pergunta');
+const Resposta = require('./model/Resposta');
 
 // template engine and statics
 app.set('view engine', 'ejs');
@@ -40,6 +41,8 @@ app.get('/perguntar', (req, res)=>{
     res.statusCode = 200;
     res.render('perguntar')
 })
+
+
 app.get('/responder/:id', (req, res)=>{
     let { id } = req.params;
     Pergunta.findOne({

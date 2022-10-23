@@ -13,11 +13,16 @@ app.get('/', (req, res)=>{
     res.statusCode = 200;
     res.render('index')
 })
+app.get('/perguntar', (req, res)=>{
+    res.statusCode = 200;
+    res.render('perguntar')
+})
+
+
 
 app.use((req, res)=>{
     res.statusCode = 404;
     res.send('404 not found');
 })
-
 
 app.listen(process.env.PORT_SERVER);

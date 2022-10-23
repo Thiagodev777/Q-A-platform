@@ -5,6 +5,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 
+// authenticate database
 const connection = require('./model/database/database');
 connection.authenticate().then(()=>{
     console.log('successful connection')
@@ -12,10 +13,10 @@ connection.authenticate().then(()=>{
     console.log('error connecting to database' + e);
 })
 
-
+// Models
 const Pergunta = require('./model/Pergunta');
 
-
+// template engine and statics
 app.set('view engine', 'ejs');
 app.use(express.static( path.join(__dirname, 'public') ));
 
@@ -25,8 +26,14 @@ app.use(express.json());
 
 app.get('/', (req, res)=>{
     res.statusCode = 200;
-    res.render('index')
+    Pergunta.findAll({raw: true}).then((perguntas)=>{
+        res.render('index', {
+            perguntas: perguntas
+        })
+    })
 })
+
+
 app.get('/perguntar', (req, res)=>{
     res.statusCode = 200;
     res.render('perguntar')
@@ -35,8 +42,13 @@ app.get('/perguntar', (req, res)=>{
 
 app.post('/salvarpergunta', (req, res)=>{
     let { titulo, descricao } = req.body;
-    res.send(titulo)
-})
+    Pergunta.create({
+        titulo: titulo,
+        descricao: descricao
+    }).then(()=>{
+        res.redirect('/');
+    })
+});
 
 
 

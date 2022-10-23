@@ -1,4 +1,14 @@
-
 body {
     background-color: #eceff1;
+}
+.no-data {
+    animation: pisca 2s infinite;
+}
+@keyframes pisca {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
 }

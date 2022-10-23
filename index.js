@@ -47,9 +47,18 @@ app.get('/responder/:id', (req, res)=>{
         where: { id: id }
     }).then((pergunta)=>{
         if(pergunta !== null){
-            res.render('responder', {
-                pergunta: pergunta
-            });
+            Resposta.findAll({
+                raw: true,
+                order: [
+                    ['respostaId', 'DESC']
+                ],
+                where: {respostaId: pergunta.id}
+            }).then((respostas)=>{
+                res.render('responder', {
+                    pergunta: pergunta,
+                    respostas: respostas
+                });
+            })
         } else {
             res.redirect('/');
         }

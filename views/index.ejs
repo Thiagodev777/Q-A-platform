@@ -8,16 +8,23 @@
         <hr>
         <a class="btn btn-success" href="/perguntar">Perguntar</a>
 
-        <% perguntas.forEach(({id, titulo, descricao}) => { %>
-            <div class="card my-5">
-                <div class="card-header">
-                    <h3> <%= titulo %> </h3>
+
+        <% if(perguntas.length === 0) { %>
+            <h2 class="my-5 no-data">Não a Perguntas Cadastradas. Adicione uma...</h2>
+        <% } else { %>
+
+            <% perguntas.forEach(({id, titulo, descricao}) => { %>
+                <div class="card my-5 shadow">
+                    <div class="card-header">
+                        <h3> <%= titulo %> </h3>
+                    </div>
+                    <div class="card-footer">
+                        <a href="responder/<%= id %>" class="btn btn-success">Responder</a>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="responder/<%= id %>" class="btn btn-success">Responder</a>
-                </div>
-            </div>
-        <% }) %> 
+            <% }) %> 
+
+        <% } %>
 
     </div>
 

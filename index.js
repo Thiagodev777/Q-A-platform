@@ -36,12 +36,10 @@ app.get('/', (req, res)=>{
     })
 })
 
-
 app.get('/perguntar', (req, res)=>{
     res.statusCode = 200;
     res.render('perguntar')
 })
-
 
 app.get('/responder/:id', (req, res)=>{
     let { id } = req.params;
@@ -55,6 +53,16 @@ app.get('/responder/:id', (req, res)=>{
         } else {
             res.redirect('/');
         }
+    })
+})
+
+app.post('/responder', (req, res)=>{
+    let { corpo, respostaId } = req.body;
+    Resposta.create({
+        corpo: corpo,
+        respostaId: respostaId
+    }).then(()=>{
+        res.redirect(`responder/${respostaId}`)
     })
 })
 

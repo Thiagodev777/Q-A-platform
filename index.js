@@ -12,6 +12,10 @@ connection.authenticate().then(()=>{
     console.log('error connecting to database' + e);
 })
 
+
+const Pergunta = require('./model/Pergunta');
+
+
 app.set('view engine', 'ejs');
 app.use(express.static( path.join(__dirname, 'public') ));
 

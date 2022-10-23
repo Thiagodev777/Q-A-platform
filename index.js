@@ -40,6 +40,20 @@ app.get('/perguntar', (req, res)=>{
     res.statusCode = 200;
     res.render('perguntar')
 })
+app.get('/responder/:id', (req, res)=>{
+    let { id } = req.params;
+    Pergunta.findOne({
+        where: { id: id }
+    }).then((pergunta)=>{
+        if(pergunta !== null){
+            res.render('responder', {
+                pergunta: pergunta
+            });
+        } else {
+            res.redirect('/');
+        }
+    })
+})
 
 
 app.post('/salvarpergunta', (req, res)=>{
@@ -53,10 +67,8 @@ app.post('/salvarpergunta', (req, res)=>{
 });
 
 
-
 app.use((req, res)=>{
     res.statusCode = 404;
     res.send('404 not found');
 })
-
 app.listen(process.env.PORT_SERVER);

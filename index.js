@@ -5,6 +5,13 @@ const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const connection = require('./model/database/database');
+connection.authenticate().then(()=>{
+    console.log('successful connection')
+}).catch((e)=>{
+    console.log('error connecting to database' + e);
+})
+
 app.set('view engine', 'ejs');
 app.use(express.static( path.join(__dirname, 'public') ));
 
@@ -26,7 +33,6 @@ app.post('/salvarpergunta', (req, res)=>{
     let { titulo, descricao } = req.body;
     res.send(titulo)
 })
-
 
 
 

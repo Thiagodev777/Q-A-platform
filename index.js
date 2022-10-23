@@ -26,7 +26,9 @@ app.use(express.json());
 
 app.get('/', (req, res)=>{
     res.statusCode = 200;
-    Pergunta.findAll({raw: true}).then((perguntas)=>{
+    Pergunta.findAll({raw: true, order: [
+        ['id', 'DESC']
+    ]}).then((perguntas)=>{
         res.render('index', {
             perguntas: perguntas
         })
